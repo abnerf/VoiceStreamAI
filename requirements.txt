@@ -5,3 +5,5 @@ asyncio
 sentence-transformers
 transformers
 faster-whisper
+SpeechRecognition
+pyaudio

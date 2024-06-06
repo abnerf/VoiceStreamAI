@@ -114,6 +114,7 @@ class OpenAIASR(ASRInterface):
         ).audio.transcriptions
 
     async def transcribe(self, client):
+        print("Transcribing audio")
         file_path = await save_audio_to_file(client.scratch_buffer, client.get_file_name())
         language = None if client.config['language'] is None else language_codes.get(
             client.config['language'].lower())
@@ -132,6 +133,7 @@ class OpenAIASR(ASRInterface):
 
             os.remove(file_path)
 
+            print(f"Transcription: {text}") 
             to_return = {
                 "language": language,
                 "language_probability": 100,

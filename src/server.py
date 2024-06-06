@@ -41,6 +41,7 @@ class Server:
 
             if isinstance(message, bytes):
                 client.append_audio_data(message)
+                print(f"Received audio data from {client.client_id}")
             elif isinstance(message, str):
                 config = json.loads(message)
                 if config.get('type') == 'config':
