@@ -107,6 +107,7 @@ language_codes = {
     "cantonese": "yue",
 }
 
+
 class OpenAIASR(ASRInterface):
     def __init__(self, **kwargs):
         self.asr_pipeline = OpenAI(
@@ -115,7 +116,8 @@ class OpenAIASR(ASRInterface):
 
     async def transcribe(self, client):
         print("Transcribing audio")
-        file_path = await save_audio_to_file(client.scratch_buffer, client.get_file_name())
+        file_path = await save_audio_to_file(client.scratch_buffer,
+                                             client.get_file_name())
         language = None if client.config['language'] is None else language_codes.get(
             client.config['language'].lower())
 
@@ -133,7 +135,7 @@ class OpenAIASR(ASRInterface):
 
             os.remove(file_path)
 
-            print(f"Transcription: {text}") 
+            print(f"Transcription: {text}")
             to_return = {
                 "language": language,
                 "language_probability": 100,
